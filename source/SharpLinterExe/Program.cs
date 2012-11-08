@@ -115,6 +115,7 @@ namespace JTC.SharpLinter
                     {
                         case "-of":
                             finalConfig.OutputFormat = value.Replace("\\r", "\r").Replace("\\n", "\n");
+                            i++; //
                             break;
                         case "-i":
                             finalConfig.IgnoreStart = value;
@@ -127,9 +128,9 @@ namespace JTC.SharpLinter
                         case "-p":
                         case "-ph":
 
-                            if (!Enum.TryParse<CompressorType>(value, out compressorType))
+                            if (!Enum.TryParse(value, out compressorType))
                             {
-                                Console.WriteLine(String.Format("Unknown pack option {0}", value));
+                                Console.WriteLine("Unknown pack option {0}", value);
                                 goto exit;
                             }
                             finalConfig.MinimizeOnSuccess = true;
@@ -156,7 +157,7 @@ namespace JTC.SharpLinter
                             }
                             else
                             {
-                                Console.WriteLine(String.Format("Cannot find JSLint source file {0}", value));
+                                Console.WriteLine("Cannot find JSLint source file {0}", value);
                                 goto exit;
                             }
                             i++;
